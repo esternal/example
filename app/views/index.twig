@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>DNS</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://getbootstrap.com/docs/4.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/res/css/main.css" rel="stylesheet">
+    {% block css %}{% endblock %}
+</head>
+<body>
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="/">DNS</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/categories">Категории</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/products/update">Обновить</a>
+            </li>
+        </ul>
+        {% if authUser %}
+            <div class="inner">
+                <a class="" style="color: #f5f5f5" href="/logout">
+                    <i class="fa fa-sign-out"></i>
+                </a>
+            </div>
+        {% endif %}
+    </div>
+</nav>
+
+<main role="main" class="container-fluid">
+    {% block content %}
+        {% for category, products in categories %}
+            <h3>{{ category }}</h3>
+
+            <table class="tbl tbl-sm">
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Stock</th>
+                </tr>
+                {% for product in products %}
+                    <tr>
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.price|number_format(2, '.', ' ') }}<small>₽</small></td>
+                        <td>{{ product.msk_st }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endfor %}
+    {% endblock %}
+</main><!-- /.container -->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>window.jQuery || document.write('<script src="https://getbootstrap.com/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+{% block js %}{% endblock %}
+</body>
+</html>
+

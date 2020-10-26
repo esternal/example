@@ -1,0 +1,34 @@
+{% extends 'index.twig' %}
+
+{% block js %}
+    <script src="/res/js/categories.js"></script>
+{% endblock %}
+
+{% block content %}
+    <table class="tbl tbl-sm">
+        <tr>
+            <th></th>
+            <th>Code</th>
+            <th>Name</th>
+        </tr>
+        {% for category in categories %}
+            <tr>
+                <td>
+                    {% if category.use %}
+                        <span class="badge badge-success">
+                            <i class="fa fa-plus-circle cp js-use" data-id="{{ category.id }}" data-st="0"></i>
+                        </span>
+                    {% else %}
+                        <span class="badge badge-secondary">
+                            <i class="fa fa-minus-circle cp js-use" data-id="{{ category.id }}" data-st="1"></i>
+                        </span>
+                    {% endif %}
+                </td>
+                <td>{{ category.code }}</td>
+                <td>{{ category.name }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+
+{% endblock %}

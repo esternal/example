@@ -1,0 +1,15 @@
+{
+	"require": {
+		"php": ">=7.1",
+		"twig/twig": "^3.0"
+	}
+	,
+	"require-dev": {
+		"roave/security-advisories": "dev-master"
+	},
+	"scripts": {
+		"post-install-cmd": [
+			"chmod -R 777 app/cache/twig"
+		]
+	}
+}
